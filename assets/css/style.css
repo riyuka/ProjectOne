@@ -1,0 +1,65 @@
+.calendar{
+	width:450px;
+	height:320px;
+	background:#fff;
+    border: 1px solid #2b816f;
+}
+
+#small-title {
+    font-size: 30px;
+}
+
+.body-list ul{
+	width:100%;
+	font-family:arial;
+	font-weight:bold;
+    font-size:14px;
+    padding: 0;
+}
+
+.body-list ul li{
+	width:14.28%;
+	height:36px;
+	line-height:36px;
+	list-style-type:none;
+	display:block;
+	box-sizing:border-box;
+	float:left;
+    text-align:center;
+}
+
+.lightgrey{
+	color:#a8a8a8; 
+}
+.darkgrey{
+	color:#565656; 
+}
+.green{
+	color:#2b816f; 
+}
+.greenbox{
+    border:1px solid #2b816f;
+    background:#e9f8df; 
+    border-radius: 8px;
+}
+
+#full-display {
+    height: 300px;
+    overflow: auto;
+}
+
+.wrap {
+    border: 1px solid rgb(0, 162, 255);
+    margin: 5px 0 5px 0;
+}
+
+.my-date {
+    font-size: 14px;
+}
+.my-thought {
+    font-size: 20px;
+}
+
+i {
+   font-size: 25px;
+}
