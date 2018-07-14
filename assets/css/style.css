@@ -1,12 +1,41 @@
 .calendar{
 	width:450px;
 	height:320px;
-	background:#fff;
+	border-radius: 5px;
+	padding-right: 12px;
+	background: #FEF9C7;
     border: 1px solid #2b816f;
 }
 
+body {
+	background-color: #EDEAE5;
+}
+
+#thought-input {
+	margin-top: 10px;
+	background-color:#f9f7f2;
+	border-radius: 5px;
+}
+
+#mood-display {
+	margin-left: 5px;
+}
+
 #small-title {
-    font-size: 30px;
+	font-size: 30px;
+	margin-left: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+#prev {
+	margin-left: 10px;
+	padding-top: 5px;
+}
+
+#next {
+	margin-left: 5px;
+	padding-top: 5px;
 }
 
 .body-list ul{
@@ -38,8 +67,8 @@
 	color:#2b816f; 
 }
 .greenbox{
-    border:1px solid #2b816f;
-    background:#e9f8df; 
+    border:1px solid #026670;
+    background:#9FEDD7; 
     border-radius: 8px;
 }
 
@@ -49,8 +78,13 @@
 }
 
 .wrap {
-    border: 1px solid rgb(0, 162, 255);
-    margin: 5px 0 5px 0;
+	border: 1px solid #026670;
+	border-radius: 5px;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+    margin: 5px 0px 5px 0px;
 }
 
 .my-date {
