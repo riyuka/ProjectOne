@@ -10,6 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
 <body>
+  <div class="wrapper">
     <div class="calendar">
         <div class="title">
           <div id="small-title"><span class="green" id="calendar-title">Month</span>
@@ -41,25 +42,30 @@
       </div>
 
       <form>
-      <label for="comment-input">What's your thought today?</label>
-        <textarea class="form-control" id="thought-input" rows="5"></textarea>
+        <fieldset>
+      <legend for="comment-input">What's your thought today?</legend>
+        <textarea class="form-control" id="thought-input" rows="5" cols="35"></textarea>
+        <br />
         <button class="btn btn-default" id="add" type="submit">Submit</button>
-        </form>
+        </fieldset>
+      </form>
 
+      <fieldset>
         <div id="my-mood">
-            <div id="mood">What's your mood today?</div>
+            <legend id="mood">What's your mood today?</legend>
                 <i class="far fa-smile" data-mood="smile"></i>
                 <i class="far fa-meh-blank" data-mood="meh"></i></i>
                 <i class="far fa-tired" data-mood="tired"></i></i>
-
         </div>
-
+      </fieldset>
+      <fieldset>
         <div class="display"></div>
 
         <div id="mood-display"></div>
+      </fieldset>
 
         <div id="full-display"></div>
-
+       </div> <!--.wrapper -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/app.js"></script>
