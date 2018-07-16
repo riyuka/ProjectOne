@@ -1,12 +1,161 @@
-.calendar{
-	width:450px;
-	height:320px;
-	background:#fff;
-    border: 1px solid #2b816f;
+header, footer {
+	display: block;
+}
+
+nav, footer {
+	clear: both;
+	height: 30px;
+}
+
+.wrapper {
+	width: 940px;
+	margin: 0px auto 20px auto;
+	border: 2px solid whitesmoke;
+	padding: 20px;
+	background-color: whitesmoke;
+}
+
+.column {
+	float: left;
+	width: 400px;
+	margin: 10px;
+}
+
+.column2 {
+	float: left;
+	width: 350px;
+	margin: 10px;
+	margin-left: 150px;
+	padding: 5px;
+}
+
+header {
+	height: 120px;
+}
+
+h1 {
+	color: #565656;
+}
+
+#fh1 {
+	text-align: center;
+	padding-left: 0px;
+}
+
+.glyphicon-user {
+	float: right;
+}
+
+nav ul {
+	margin: 0px;
+	padding: 5px 0px 5px 10px;
+}
+
+nav li {
+	display: inline;
+	margin-right: 40px;
+}
+
+nav li a {
+	color: #565656;
+
+}
+
+nav li a:hover, nav li a.home {
+	color: DodgerBlue;
+}
+
+footer {
+	margin-top: 15px;
+	padding-top: 5px;
+}
+
+body {
+	background-color: whitesmoke;
+}
+
+#add  {
+	border-radius: 5px;
+	margin-top: 10px;
+	background-color: dodgerblue; /* Blue background */
+    border: 2px solid dodgerblue;
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+}
+
+#clear {
+	
+	border-radius: 5px;
+	margin-top: 10px;
+	background-color:white; /* Blue background */
+	border: 2px solid;
+	border-color: dodgerblue;
+    color: dodgerblue; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+}
+
+/* Darker background on mouse-over */
+#add:hover {
+	background-color: white;
+	color: dodgerblue;
+}
+
+#clear:hover {
+	background-color: RoyalBlue;
+	color: white;
+}
+
+#add {
+	margin-right: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+#thought {
+	border-bottom: 4px solid dodgerblue;
+	text-decoration: underline;
+	color: #565656;
+	
+}
+
+#thought:hover, #thought:active {
+	border-bottom: 4px solid dodgerblue;
+	/* text-decoration: underline; */
+	color: dodgerblue;
+}
+#thought:link {
+	text-decoration: dodgerblue;
+}
+
+#thought-input {
+	margin-top: 10px;
+	background-color:#E8E8E8;
+	border-radius: 5px;
+}
+/* ================== */
+#mood-display {
+	margin-left: 5px;
 }
 
 #small-title {
-    font-size: 30px;
+	font-size: 30px;
+	margin-left: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+#prev {
+	margin-left: 10px;
+	padding-top: 5px;
+}
+
+#next {
+	margin-left: 5px;
+	padding-top: 5px;
 }
 
 .body-list ul{
@@ -38,8 +187,8 @@
 	color:#2b816f; 
 }
 .greenbox{
-    border:1px solid #2b816f;
-    background:#e9f8df; 
+    border:1px solid #026670;
+    background:#9FEDD7; 
     border-radius: 8px;
 }
 
@@ -49,8 +198,13 @@
 }
 
 .wrap {
-    border: 1px solid rgb(0, 162, 255);
-    margin: 5px 0 5px 0;
+	border: 1px solid #026670;
+	border-radius: 5px;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+    margin: 5px 0px 5px 0px;
 }
 
 .my-date {
@@ -58,8 +212,4 @@
 }
 .my-thought {
     font-size: 20px;
-}
-
-i {
-   font-size: 25px;
 }
