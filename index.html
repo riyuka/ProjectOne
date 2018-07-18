@@ -9,57 +9,70 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
+
 <body>
-    <div class="calendar">
-        <div class="title">
-          <div id="small-title"><span class="green" id="calendar-title">Month</span>
-          <span class="green small" id="calendar-year">Year</span>
-          </div>
-          <div>
-          <a href="" id="prev">Prev Month</a>
-          <a href="" id="next">Next Month</a>
-          </div>
-        </div>
-        <div class="body">
-          <div class="lightgrey body-list">
-            <ul>
-              <li>SUN</li>
-              <li>MON</li>
-              <li>TUE</li>
-              <li>WED</li>
-              <li>THU</li>
-              <li>FRI</li>
-              <li>SAT</li>
-              
-            </ul>
-          </div>
-          <div class="darkgrey body-list">
-            <ul id="days">
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <form>
-      <label for="comment-input">What's your thought today?</label>
-        <textarea class="form-control" id="thought-input" rows="5"></textarea>
+  <div class="wrapper">
+     
+<header>
+  <h1 id="fh1"><em>ThoughtKeeper</em></h1>
+  <nav>
+    <ul><h3>
+      <li><a href="" class="home" id="thought">Thoughts</a></li>
+      <li><a id="food" href="" >Food</a></li>
+      <li><a id="mood" href="" >Mood</a></li>
+    </h3></ul>
+  </nav>
+</header>
+   <div class="column"> 
+      <p><h1>What's on your mind today?</h1></p>
+      
+      <form>   
+        <textarea class="form-control" id="thought-input" rows="15" cols="55"></textarea>
+        <br />
         <button class="btn btn-default" id="add" type="submit">Submit</button>
-        </form>
+        <button class="btn btn-default" id="clear" type="submit">Clear </button> 
+      </form>
+    </div>
+    
+    <div class="column2">
 
-        <div id="my-mood">
-            <div id="mood">What's your mood today?</div>
-                <i class="far fa-smile" data-mood="smile"></i>
-                <i class="far fa-meh-blank" data-mood="meh"></i></i>
-                <i class="far fa-tired" data-mood="tired"></i></i>
+      <p>Yesterday, July 15, 2018</p>
 
-        </div>
+      <p><b></b>10:20 am</b></p>
 
+      <p>Chocolate tootsie roll soufflé bonbon biscuit brownie. Halvah tart macaroon 
+        muffin topping soufflé sweet roll macaroon. Caramels danish pie cotton candy 
+        cookie marshmallow. Cake oat cake cake jelly-o ice cream bonbon.</p>
+
+        <hr />
+
+      <p><b></b>8:10 am</b></p>
+  
+      <p>Soufflé gingerbread topping biscuit cheesecake. Jelly beans bear claw 
+        apple pie lemon drops brownie tart. Topping tootsie roll brownie bonbon
+        cotton candy.</p>
+
+        <hr />
+
+      <p>July 12, 2018</p>
+
+      <p><b></b>10:20 am</b></p>
+    
+      <p>Lemon drops cupcake sugar plum ice cream powder jelly bonbon cupcake. 
+        Toffee jelly beans candy canes gingerbread marzipan. Dragée macaroon candy 
+        gingerbread soufflé. Bear claw icing pie chocolate bar halvah donut dragée. 
+        Jelly lollipop biscuit. Fruitcake jelly beans bonbon candy halvah gingerbread
+        ice cream jelly.</p>
+        
         <div class="display"></div>
-
-        <div id="mood-display"></div>
-
+        
         <div id="full-display"></div>
 
+</div> <!-- .column -->
+
+
+      <footer>&copy ThoughtKeeper by Lu, Stephanie, Ariel</footer>
+  </div> <!--.wrapper -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/app.js"></script>
