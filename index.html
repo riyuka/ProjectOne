@@ -10,7 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
 <body>
-    <div class="calendar">
+    <!-- <div class="calendar">
         <div class="title">
           <div id="small-title"><span class="green" id="calendar-title">Month</span>
           <span class="green small" id="calendar-year">Year</span>
@@ -38,7 +38,13 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
+
+      <button id="food-btn">Food</button>
+
+      <button id="journal-btn">Journal</button>
+
+      <button id="mood-btn">Mood</button>
 
       <form>
       <label for="comment-input">What's your thought today?</label>
@@ -46,19 +52,17 @@
         <button class="btn btn-default" id="add" type="submit">Submit</button>
         </form>
 
-        <div id="my-mood">
+        <!-- <div id="my-mood">
             <div id="mood">What's your mood today?</div>
-                <i class="far fa-smile" data-mood="smile"></i>
-                <i class="far fa-meh-blank" data-mood="meh"></i></i>
-                <i class="far fa-tired" data-mood="tired"></i></i>
+                <i class="far fa-smile" data-mood="smile"></i><input type="radio" class="chk" data-mood="smile">
+                <i class="far fa-meh-blank" data-mood="meh"></i></i></i><input type="radio" class="chk" data-mood="meh">
+                <i class="far fa-tired" data-mood="tired"></i></i></i><input type="radio" class="chk" data-mood="tired">
 
-        </div>
+        </div> -->
 
-        <div class="display"></div>
+        <div id="thought-display"></div>
 
-        <div id="mood-display"></div>
 
-        <div id="full-display"></div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
