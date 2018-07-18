@@ -11,69 +11,41 @@
 </head>
 
 <body>
-  <div class="wrapper">
-     
-<header>
-  <h1 id="fh1"><em>ThoughtKeeper</em></h1>
-  <nav>
-    <ul><h3>
-      <li><a href="" class="home" id="thought">Thoughts</a></li>
-      <li><a id="food" href="" >Food</a></li>
-      <li><a id="mood" href="" >Mood</a></li>
-    </h3></ul>
-  </nav>
-</header>
-   <div class="column"> 
-      <p><h1>What's on your mind today?</h1></p>
-      
-      <form>   
-        <textarea class="form-control" id="thought-input" rows="15" cols="55"></textarea>
-        <br />
+  <div class="wrapper"> <!-- added.by.S -->
+
+    <header><!-- added.by.S -->
+      <nav>
+        <ul><h3>
+          <li><a id="journal-btn" href="" >Journal</a></li> 
+          <li><a id="food-btn" href="" >Food</a></li> 
+          <li><a id="mood-btn" href="" >Mood</a></li>
+        </h3></ul>
+      </nav>
+    </header>
+
+
+      <div class="column"> <!-- column-1 added.by.S -->
+        <p><h1>What's on your mind today?</h1></p>
+      <form>
+      <!-- <label for="comment-input">What's your thought today?</label> -->
+
+
+        <!-- <textarea class="form-control" id="thought-input" rows="5"></textarea> Lu.old.code -->
+        <textarea class="form-control" id="thought-input" rows="15" cols="55"></textarea> <!-- added.by.S -->
+        <br /> <!-- added.by.S -->
         <button class="btn btn-default" id="add" type="submit">Submit</button>
-        <button class="btn btn-default" id="clear" type="submit">Clear </button> 
+        <button class="btn btn-default" id="clear" type="submit">Clear </button>  <!-- added.by.S -->
       </form>
-    </div>
+    </div> <!-- closing div for .column added.by.S -->
     
+    <div id="length">
     <div class="column2">
+        <div id="thought-display"></div>
+      </div> <!-- closing div for .column2 -->
+    </div> <!-- closing div for #length -->
 
-      <p>Yesterday, July 15, 2018</p>
-
-      <p><b></b>10:20 am</b></p>
-
-      <p>Chocolate tootsie roll soufflé bonbon biscuit brownie. Halvah tart macaroon 
-        muffin topping soufflé sweet roll macaroon. Caramels danish pie cotton candy 
-        cookie marshmallow. Cake oat cake cake jelly-o ice cream bonbon.</p>
-
-        <hr />
-
-      <p><b></b>8:10 am</b></p>
-  
-      <p>Soufflé gingerbread topping biscuit cheesecake. Jelly beans bear claw 
-        apple pie lemon drops brownie tart. Topping tootsie roll brownie bonbon
-        cotton candy.</p>
-
-        <hr />
-
-      <p>July 12, 2018</p>
-
-      <p><b></b>10:20 am</b></p>
-    
-      <p>Lemon drops cupcake sugar plum ice cream powder jelly bonbon cupcake. 
-        Toffee jelly beans candy canes gingerbread marzipan. Dragée macaroon candy 
-        gingerbread soufflé. Bear claw icing pie chocolate bar halvah donut dragée. 
-        Jelly lollipop biscuit. Fruitcake jelly beans bonbon candy halvah gingerbread
-        ice cream jelly.</p>
-        
-        <div class="display"></div>
-        
-        <div id="full-display"></div>
-
-</div> <!-- .column -->
-
-
-      <footer>&copy ThoughtKeeper by Lu, Stephanie, Ariel</footer>
-  </div> <!--.wrapper -->
-
+      <footer>&copy ThoughtKeeper by Lu, Stephanie, Ariel</footer> <!-- footer -->
+    </div> <!--.wrapper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/app.js"></script>
 </body>
