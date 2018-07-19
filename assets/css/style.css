@@ -1,49 +1,46 @@
 header, footer {
 	display: block;
 }
-
-nav, footer {
+nav {
 	clear: both;
-	height: 30px;
+	height: 10px;
 }
-
+footer {
+	clear: both;
+	height: 0px;
+	padding-bottom: 5px;
+}
 .wrapper {
 	width: 940px;
+	height: 600px;
 	margin: 0px auto 20px auto;
 	border: 2px solid whitesmoke;
-	padding: 20px;
+	padding: 10px;
 	background-color: whitesmoke;
 }
 
 .column {
 	float: left;
-	width: 400px;
+	width: 400px;  /* this is the width of the column inside column */
 	margin: 10px;
 }
 
 .column2 {
+	padding-top: 0px;
 	float: left;
-	width: 350px;
+	width: 400px;  /* this is the width of the column in column */
 	margin: 10px;
-	margin-left: 150px;
+	margin-left: 80px; /* this is the distance in between the columns */
 	padding: 5px;
+    bottom: 0;
 }
 
 header {
-	height: 120px;
+	height: 60px;
 }
 
 h1 {
 	color: #565656;
-}
-
-#fh1 {
-	text-align: center;
-	padding-left: 0px;
-}
-
-.glyphicon-user {
-	float: right;
 }
 
 nav ul {
@@ -66,7 +63,7 @@ nav li a:hover, nav li a.home {
 }
 
 footer {
-	margin-top: 15px;
+	margin-top: 10px;
 	padding-top: 5px;
 }
 
@@ -115,20 +112,19 @@ a {
 	text-decoration: none;
 }
 
-#thought {
+#journal-btn {
 	border-bottom: 4px solid dodgerblue;
 	text-decoration: underline;
 	padding-bottom: 5px;
 	color: #565656;
-	
 }
 
-#thought:hover, #thought:active {
+#journal-btn:hover, #thought:active {
 	border-bottom: 4px solid dodgerblue;
 	/* text-decoration: underline; */
 	color: dodgerblue;
 }
-#thought:link {
+#journal-btn:link {
 	text-decoration: dodgerblue;
 }
 
@@ -136,29 +132,52 @@ a {
 	margin-top: 10px;
 	background-color:#E8E8E8;
 	border-radius: 5px;
+	border: none;
 }
-/* ================== */
+/* ================== above added 07-15-2018 */
 #mood-display {
 	margin-left: 5px;
 }
 
-#small-title {
-	font-size: 30px;
-	margin-left: 5px;
-	padding-top: 5px;
+#thought-display {
+	height: 490px;
+	overflow: auto;
+}
+
+#length {
+	margin-top: 40px;
+}
+.wrap {
+	border-bottom: 1px solid #a8a8a8;
+	border-bottom-width: 1pt;
+	margin: 5px 0 5px 0;
+	border-radius: 0px;
 	padding-left: 5px;
-}
-
-#prev {
-	margin-left: 10px;
 	padding-top: 5px;
+	padding-bottom: 20px;
+	padding-right: 5px;
+    margin: 5px 0px 5px 0px;
 }
 
-#next {
-	margin-left: 5px;
-	padding-top: 5px;
+.my-date {
+	font-size: 14px;
+	color: #565656;
+	
+}
+.my-thought {
+	font-size: 20px;
+	
 }
 
+.calendar{
+	width:450px;
+	height:320px;
+	background:#fff;
+    border: 1px solid #2b816f;
+}
+#small-title {
+    font-size: 30px;
+}
 .body-list ul{
 	width:100%;
 	font-family:arial;
@@ -166,7 +185,6 @@ a {
     font-size:14px;
     padding: 0;
 }
-
 .body-list ul li{
 	width:14.28%;
 	height:36px;
@@ -177,7 +195,7 @@ a {
 	float:left;
     text-align:center;
 }
-
+/* take out code below? */
 .lightgrey{
 	color:#a8a8a8; 
 }
@@ -188,29 +206,45 @@ a {
 	color:#2b816f; 
 }
 .greenbox{
-    border:1px solid #026670;
-    background:#9FEDD7; 
+    border:1px solid #2b816f;
+    background:#e9f8df; 
     border-radius: 8px;
 }
+/* take out code above? */
+i {
+	font-size: 25px;
+ }
+ .card-img-top {
+	 width: 100px;
+	 height: 100px;
+ }
+ .card-deck {
+    width: 800px;
+    height: auto;
+    float: left;
+    margin-left: 20px;
+}
+.card-deck .card {
+    flex-grow: 0;
+    flex-basis: 120px;
+}
 
-#full-display {
-    height: 300px;
+h5 {
+    font-size: 16px;
+} 
+#food-display, #mood-display{
+    width: 600px;
+    height: 400px;
+    border: 1px solid grey;
+    float: right;
+    margin-right:20px;
     overflow: auto;
 }
-
-.wrap {
-	border: 1px solid #026670;
-	border-radius: 5px;
-	padding-left: 5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-right: 5px;
-    margin: 5px 0px 5px 0px;
+#my-mood {
+    float: left;
+    margin-top: 60px;
 }
-
-.my-date {
-    font-size: 14px;
-}
-.my-thought {
-    font-size: 20px;
+#full-display {
+    height: 460px;
+    overflow: auto;
 }
