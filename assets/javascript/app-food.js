@@ -1,10 +1,10 @@
 var config = {
-apiKey: "AIzaSyDP9z_IucdD0Aneqog4OQt-tt3BQhS0oEs",
-authDomain: "thoughtkeeper-80696.firebaseapp.com",
-databaseURL: "https://thoughtkeeper-80696.firebaseio.com",
-projectId: "thoughtkeeper-80696",
-storageBucket: "thoughtkeeper-80696.appspot.com",
-messagingSenderId: "271875655252"
+    apiKey: "AIzaSyCd25itEtU1gBEoGZPWa4Q4z7xjAc7Vx2c",
+    authDomain: "keeper-96b35.firebaseapp.com",
+    databaseURL: "https://keeper-96b35.firebaseio.com",
+    projectId: "keeper-96b35",
+    storageBucket: "keeper-96b35.appspot.com",
+    messagingSenderId: "300480516087"
 };
 firebase.initializeApp(config);
 
@@ -24,17 +24,14 @@ var dateDisplay = "";
 
 $(document).on('click', '.card-img-top', function(){
     var userFood = $(this).attr('id');
-    // var dateStr = date.toLocaleString();
-    dateId = getCurrentDateTimeMySql().slice(0, 10);
 
-    // var dateId = date.toISOString().slice(0,10);
 
     function writeFood() {
-        var newRef = dataRef.ref(dateId + '/' + 'myFood').push();
+        var newRef = dataRef.ref('myFood').push();
         var newKey = newRef.key;
         var newFood={
-                id: newKey,
-                dateAdded: firebase.database.ServerValue.TIMESTAMP,
+                // id: newKey,
+                // dateAdded: firebase.database.ServerValue.TIMESTAMP,
                 food: userFood,
                 count: 1,
                 dateId: dateId
@@ -56,7 +53,9 @@ $(document).on('click', '.card-img-top', function(){
                     return (currentCount + 1);
                 });
             } 
+        
     })
+
 })
 
 
@@ -71,7 +70,8 @@ theRef.on("child_added", function(childSnapshot) {
 // var dayFood = $("<div class='day-wrap>").prepend(childSnapshot.dateId);
 
 
- $('#food-display').prepend("<div class='wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateId +"</div>" + "<div class='my-food'> "  + childSnapshot.val().food + "</div>" + "</div>");
+
+ $('#food-display').prepend("<div class='food-wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateId +"</div>" + "<div class='my-food'> "  + childSnapshot.val().food + "</div>" + "</div>");
 
 }, function (error) {
    console.log("Error: " + error.code);

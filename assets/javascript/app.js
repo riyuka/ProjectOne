@@ -75,39 +75,255 @@
 
 //connect firebase
   var config = {
-    apiKey: "AIzaSyDP9z_IucdD0Aneqog4OQt-tt3BQhS0oEs",
-    authDomain: "thoughtkeeper-80696.firebaseapp.com",
-    databaseURL: "https://thoughtkeeper-80696.firebaseio.com",
-    projectId: "thoughtkeeper-80696",
-    storageBucket: "thoughtkeeper-80696.appspot.com",
-    messagingSenderId: "271875655252"
+    apiKey: "AIzaSyCd25itEtU1gBEoGZPWa4Q4z7xjAc7Vx2c",
+    authDomain: "keeper-96b35.firebaseapp.com",
+    databaseURL: "https://keeper-96b35.firebaseio.com",
+    projectId: "keeper-96b35",
+    storageBucket: "keeper-96b35.appspot.com",
+    messagingSenderId: "300480516087"
   };
   firebase.initializeApp(config);
   
+  function getCurrentDateTime() {        
+    var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 19).replace('T', ' ');
+    var myDT = localISOTime;
+    return myDT;
+}
+
   var dataRef = firebase.database();
   var userInput = "";
   var date = new Date();
+  var dateId;
+  var dateDisplay;
   
 
-  function getCurrentDateTimeMySql() {        
-    var tzoffset = (new Date()).getTimezoneOffset() * 60000;
-    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 19).replace('T', ' ');
-    var mySqlDT = localISOTime;
-    return mySqlDT;
-}
-//   var userMood;
-//   var date = "";
 
-//   var updates = {};
+  var thoughtRef = dataRef.ref('thought');
+  var foodRef = dataRef.ref('food');
+  var moodRef = dataRef.ref('mood');
+  var foodSpendRef = dataRef.ref('food-spend');
+//   var spendTotalRef = dataRef.ref('spend-total');
+ 
 
-//   var enableButton = function(){
-//     $('.chk').removeAttr('disabled');
-// }
+   $("#add").on("click", function(event) {
+    event.preventDefault();
+    userInput = $("#thought-input").val();
+    dateId = getCurrentDateTime().slice(0, 10);
+    dateDisplay = getCurrentDateTime();
+    $("#thought-input").val("");
+
+    var thoughtKey = thoughtRef.push().key;
+    var updatesT = {};
+    updatesT[thoughtKey] = {
+        time: dateDisplay,
+        thought: userInput,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+    }
+    thoughtRef.update(updatesT)
+    
+})
+
+dataRef.ref().child('thought').on('child_added', function(snapshot){
+
+    $('#thought-display').prepend("<div class='thought-wrap'>" + "<div class='my-date'>" + snapshot.val().time +"</div>" + "<div class='my-thought'> " + snapshot.val().thought + "</div>" + "</div>");
+ 
+})
+
+$("#food-spend").on("click", function(event) {
+    event.preventDefault();
+    spendInput = $("#spend-input").val();
+   
+    dateId = getCurrentDateTime().slice(0, 10);
+    dateDisplay = getCurrentDateTime();
+    $("#spend-input").val("");
+
+    var foodSpendKey = foodSpendRef.push().key;
+    var updatesS = {};
+    updatesS[foodSpendKey] = {
+        time: dateDisplay,
+        foodSpend: spendInput,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+    }
+    foodSpendRef.update(updatesS);
+
+    function writeSpendTotal() {
+        
+        var updatesST = {};
+        updatesST= {
+            total: spendInput
+        }
+        return dataRef.ref('spendTotal').update(updatesST)
+    }
+
+  
+    dataRef.ref().child('spendTotal').equalTo('total').once("value",function(snapshot){  
+        var userData = snapshot.val();
+      console.log(JSON.stringify(userData))
+        
+             var countRef = dataRef.ref('spendTotal' +'/' + 'total');
+  
+           countRef.transaction(function(currentCount) {
+               return Number(currentCount) + Number(spendInput) })
+
+            //    $('#spendtt').text()
+    });
+    
+})
+
+dataRef.ref().child('food-spend').on('child_added', function(snapshot){
+
+    $('#food-display').prepend("<div class='spend-wrap'>" + "<div class='my-date'>" + snapshot.val().time +"</div>" + "<div class='my-spend'> " + snapshot.val().foodSpend + "</div>" + "</div>");
+ 
+})
 
 
-// $(document).on('click', '#today', function(){
-//     alert('hi')
-// });
+$(document).on('click', '.card-img-top', function(){
+    var userFood = $(this).attr('id');
+    dateId = getCurrentDateTime().slice(0, 10);
+    
+    function writeFood() {
+        var foodKey = foodRef.push().key;
+        var updatesF = {};
+        updatesF[userFood] = {
+            time: dateId,
+            food: userFood,
+            count : 1,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+        }
+        return foodRef.update(updatesF)
+    }
+
+    dataRef.ref().child('food').orderByChild('food').equalTo(userFood).once("value",function(snapshot){  
+        var userData = snapshot.val();
+            //console.log(userData)
+        if (!userData) {
+           writeFood();
+        } else {
+             var foodCountRef = dataRef.ref('food'+ '/' + '/' + userFood + '/' + 'count');
+           foodCountRef.transaction(function(currentCount) {
+               return (currentCount + 1);})
+               
+          }
+    });
+
+ 
+});
+
+dateId = getCurrentDateTime().slice(0, 10);
+     
+dataRef.ref().child('food').orderByKey().on("value",function(snapshot){  
+    
+
+    //child(dateId).orderByChild('food')
+    // $("#food-display").prepend("<div id='" + dateId + "'>" + dateId + "</div>");
+
+    // console.log(snapshot.val().apple.count)
+
+    $('#apple-d').html("<div>" + snapshot.val().apple.count + "</div>")
+    $('#avocado-d').html( "<div>" + snapshot.val().avocado.count + "</div>")
+
+    
+ 
+ 
+   
+
+})
+// foodRef.orderByChild(userFood).equalTo(dateId).on("value",function(snapshot) {   
+//     var userData = snapshot.val();
+//     console.log(JSON.stringify(userData))
+//         if (!userData){
+//           writeFood();
+//         } else {
+//             var foodCountRef = dataRef.ref('food'+ '/' + userFood + '/' + dateId + '/' + 'count');
+//             foodCountRef.transaction(function(currentCount) {
+//                 return (currentCount + 1);
+//             });
+//         } 
+
+//     })
+// })
+
+$(document).on("click", 'i', function() {
+    // $(this).attr('disabled', 'disabled');
+    // setTimeout(enableButton, 360000);
+   
+        // $('input.chk').not(this).prop('checked', false)
+    userMood = $(this).attr("data-mood");
+    console.log(userMood)
+    dateId = getCurrentDateTime().slice(0, 10);
+    
+    function writeMood() {
+
+        var moodKey = moodRef.push().key;
+      
+         var updatesM = {};
+         updatesM[userMood +'/' + dateId]= {
+             mood: userMood,
+             date: dateId,
+             timestamp: firebase.database.ServerValue.TIMESTAMP
+         }
+          return moodRef.update(updatesM);
+      }
+      writeMood();
+
+    })
+
+    // else {
+        // dataRef.ref('/myMood').push(newData
+        //     // {dateAdded: firebase.database.ServerValue.TIMESTAMP,
+        //     // mood: userMood,
+        //     // myDate: dateStr}
+        //   )
+
+
+
+
+
+    // function writeFood() {
+    //     var newRef = dataRef.ref('myFood').push();
+    //     var newKey = newRef.key;
+    //     var newFood={
+    //             // id: newKey,
+    //             // dateAdded: firebase.database.ServerValue.TIMESTAMP,
+    //             food: userFood,
+    //             count: 1,
+    //             dateId: dateId
+    //     }
+    //     var updates = {};
+    //     updates[dateId + '/' + 'myFood' + '/' + userFood]= newFood;
+    //      return dataRef.ref().update(updates);
+    // }
+
+    // var refA = dataRef.ref('myFood');
+
+    // refA.orderByChild('food').equalTo(userFood).once("value",function(snapshot) {   
+    //     var userData = snapshot.val();
+    //         if (!userData){
+    //           writeFood();
+    //         } else {
+    //             var foodCountRef = dataRef.ref(dateId + '/' +'myFood'+ '/' + userFood + '/' + 'count');
+    //             foodCountRef.transaction(function(currentCount) {
+    //                 return (currentCount + 1);
+    //             });
+    //         } 
+        
+    // })
+
+
+
+// dataRef.ref().child('thought').once('value', function(snapshot){
+//         console.log(JSON.stringify(snapshot.key));
+//         console.log(JSON.stringify(snapshot.val()));
+//         snapshot.forEach(function(item){
+//            var content = JSON.stringify(item.val())
+//            $('#thought-display').prepend("<div class='thought-wrap'>" + "<div class='my-date'>" + item.val().time +"</div>" + "<div class='my-thought'> " + item.val().thought + "</div>" + "</div>");
+//         })
+// })
+
+
+
+
 
 
 // $('input.chk').on("change", function(event) {
@@ -170,60 +386,60 @@
 
     
 //   });
-var dateId = "";
-var dateDisplay = "";
+// var dateId = "";
+// var dateDisplay = "";
 
-  $("#add").on("click", function(event) {
-    event.preventDefault();
-    userInput = $("#thought-input").val();
-    dateId = getCurrentDateTimeMySql().slice(0, 10);
-    dateDisplay = getCurrentDateTimeMySql();
-    $("#thought-input").val("");
+//   $("#add").on("click", function(event) {
+//     event.preventDefault();
+//     userInput = $("#thought-input").val();
+//     dateId = getCurrentDateTimeMySql().slice(0, 10);
+//     dateDisplay = getCurrentDateTimeMySql();
+//     $("#thought-input").val("");
 
-    function writeThought() {
-        var newRef = dataRef.ref(dateId + '/' + 'myThought').push();
-        var newKey = newRef.key;
-        var newThought={
-            id: newKey,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP,
-            thought: userInput,         
-            dateId: dateId,
-            dateDisplay: dateDisplay
-        }
-        var updates = {};
-             updates[dateId + '/' + 'myThought' + '/' + dateDisplay]= newThought;
-              return dataRef.ref().update(updates);
-              dataRef.ref('/myThought').update(newThought);
-    }
+//     function writeThought() {
+//         var newRef = dataRef.ref(dateId + '/' + 'myThought').push();
+//         var newKey = newRef.key;
+//         var newThought={
+//             // id: newKey,
+//             // dateAdded: firebase.database.ServerValue.TIMESTAMP,
+//             thought: userInput,         
+//             dateId: dateId,
+//             dateDisplay: dateDisplay
+//         }
+//         var updates = {};
+//              updates[dateId + '/' + 'myThought' + '/' + dateDisplay]= newThought;
+//               return dataRef.ref().update(updates);
+//               dataRef.ref('/myThought').update(newThought);
+//     }
   
-     if (userInput!== "" ) {
-         writeThought()} 
-         else {
-             alert('nothing is added')
-         };
+//      if (userInput!== "" ) {
+//          writeThought()} 
+//          else {
+//              alert('nothing is added')
+//          };
 
-    // dataRef.ref('/myThought').push({
-    //   dateAdded: firebase.database.ServerValue.TIMESTAMP,
-    //   thought: userInput,
-    //   myDate: dateStr
-    });
+//     // dataRef.ref('/myThought').push({
+//     //   dateAdded: firebase.database.ServerValue.TIMESTAMP,
+//     //   thought: userInput,
+//     //   myDate: dateStr
+//     });
      
-dateId = getCurrentDateTimeMySql().slice(0, 10);
+// dateId = getCurrentDateTimeMySql().slice(0, 10);
 
-var  theRef = dataRef.ref(dateId + '/' + 'myThought').orderByKey();
+// var  theRef = dataRef.ref(dateId + '/' + 'myThought').orderByKey();
 
 
-theRef.on("child_added", function(childSnapshot) {
+// theRef.on("child_added", function(childSnapshot) {
    
-//     var content = childSnapshot.val().thought;
-// console.log(content);
+// //     var content = childSnapshot.val().thought;
+// // console.log(content);
 
- $('#thought-display').prepend("<div class='wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateDisplay +"</div>" + "<div class='my-thought'> " + childSnapshot.val().thought + "</div>" + "</div>");
+//  $('#thought-display').prepend("<div class='thought-wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateDisplay +"</div>" + "<div class='my-thought'> " + childSnapshot.val().thought + "</div>" + "</div>");
  
 
-}, function (error) {
-   console.log("Error: " + error.code);
-});
+// }, function (error) {
+//    console.log("Error: " + error.code);
+// });
 
 
 

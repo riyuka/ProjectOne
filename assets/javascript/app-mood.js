@@ -1,10 +1,10 @@
 var config = {
-    apiKey: "AIzaSyDP9z_IucdD0Aneqog4OQt-tt3BQhS0oEs",
-    authDomain: "thoughtkeeper-80696.firebaseapp.com",
-    databaseURL: "https://thoughtkeeper-80696.firebaseio.com",
-    projectId: "thoughtkeeper-80696",
-    storageBucket: "thoughtkeeper-80696.appspot.com",
-    messagingSenderId: "271875655252"
+    apiKey: "AIzaSyCd25itEtU1gBEoGZPWa4Q4z7xjAc7Vx2c",
+    authDomain: "keeper-96b35.firebaseapp.com",
+    databaseURL: "https://keeper-96b35.firebaseio.com",
+    projectId: "keeper-96b35",
+    storageBucket: "keeper-96b35.appspot.com",
+    messagingSenderId: "300480516087"
   };
   firebase.initializeApp(config);
   
@@ -67,8 +67,8 @@ $('input.chk').on("click", function(event) {
             var newRef = dataRef.ref(dateId + '/' + 'myMood').push();
             var newKey = newRef.key;
             var newMood={
-                id: newKey,
-                dateAdded: firebase.database.ServerValue.TIMESTAMP,
+                // id: newKey,
+                // dateAdded: firebase.database.ServerValue.TIMESTAMP,
                 mood: userMood,
                 dateId: dateId
              }
@@ -94,15 +94,72 @@ $('input.chk').on("click", function(event) {
 
 var  theRef = dataRef.ref(dateId + '/' + 'myMood').orderByKey();
 
+var thekeys = dataRef.ref().key;
 
-theRef.on("child_added", function(childSnapshot) {
+
+
+dataRef.ref().once("value", function(childSnapshot) {
+
+
+
+    console.log(JSON.stringify(childSnapshot.key));
    
-//     var content = childSnapshot.val().thought;
-// console.log(content);
+    // var content = childSnapshot.val();
 
- $('#mood-display').prepend("<div class='wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateId +"</div>" + "<div class='my-mood'> " + childSnapshot.val().mood + "</div>" + "</div>");
+    // var thedata = JSON.stringify(content);
+
+    
+
+
+
+
+//     // console.log(content['2018-07-16'].myFood.apple.food)
+
+// //     var obj = JSON.parse(content)
+
+// //  console.log(obj)
+
+//     // for (var [k, v] of Object.entries(content)) {
+//     //     console.log(`Here is key ${k} and here is value ${v}`);
+//     //   }
+
+
+
+
+
+
+
+     
+
+
+
+// //    for (key in content) {
+// //        console.log(key)
+// //    }
+
+// //     //    $('#mood-display').prepend("<div " + " id='" + key +"' >" + key + "</div>")
+// //    }
+   
+
+
+//  
+// //  $('#mood-display').prepend("<div class='mood-wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateId +"</div>" + "<div class='my-mood'> " + childSnapshot.val().mood + "</div>" + "</div>");
  
 
 }, function (error) {
    console.log("Error: " + error.code);
 });
+
+
+
+// theRef.on("child_added", function(childSnapshot) {
+   
+// //     var content = childSnapshot.val().thought;
+// // console.log(content);
+
+//  $('#').append("<div class='mood-wrap'>" + "<div class='my-date'>" + childSnapshot.val().dateId +"</div>" + "<div class='my-mood'> " + childSnapshot.val().mood + "</div>" + "</div>");
+ 
+
+// }, function (error) {
+//    console.log("Error: " + error.code);
+// });
