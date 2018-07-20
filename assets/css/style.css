@@ -21,16 +21,16 @@ footer {
 
 .column {
 	float: left;
-	width: 400px;  /* this is the width of the column inside column */
+	width: 400px;  
 	margin: 10px;
 }
 
 .column2 {
 	padding-top: 0px;
 	float: left;
-	width: 400px;  /* this is the width of the column in column */
+	width: 400px;  
 	margin: 10px;
-	margin-left: 80px; /* this is the distance in between the columns */
+	margin-left: 80px; 
 	padding: 5px;
     bottom: 0;
 }
@@ -60,6 +60,8 @@ nav li a {
 
 nav li a:hover, nav li a.home {
 	color: DodgerBlue;
+	padding-bottom: 5px;
+	border-bottom: 4px solid dodgerblue;
 }
 
 footer {
@@ -74,26 +76,25 @@ body {
 #add  {
 	border-radius: 5px;
 	margin-top: 10px;
-	background-color: dodgerblue; /* Blue background */
+	background-color: dodgerblue; 
     border: 2px solid dodgerblue;
-    color: white; /* White text */
-    padding: 12px 16px; /* Some padding */
-    font-size: 16px; /* Set a font size */
+    color: white; 
+    padding: 12px 16px; 
+    font-size: 16px;
 }
 
 #clear {
 	
 	border-radius: 5px;
 	margin-top: 10px;
-	background-color:white; /* Blue background */
+	background-color:white; 
 	border: 2px solid;
 	border-color: dodgerblue;
-    color: dodgerblue; /* White text */
-    padding: 12px 16px; /* Some padding */
-    font-size: 16px; /* Set a font size */
+    color: dodgerblue; 
+    padding: 12px 16px;
+    font-size: 16px; 
 }
 
-/* Darker background on mouse-over */
 #add:hover {
 	background-color: white;
 	color: dodgerblue;
@@ -110,19 +111,16 @@ body {
 
 a {
 	text-decoration: none;
-}
+ } 
 
 #journal-btn {
-	border-bottom: 4px solid dodgerblue;
-	text-decoration: underline;
 	padding-bottom: 5px;
 	color: #565656;
 }
 
 #journal-btn:hover, #thought:active {
 	border-bottom: 4px solid dodgerblue;
-	/* text-decoration: underline; */
-	color: dodgerblue;
+	color: dodgerblue;	
 }
 #journal-btn:link {
 	text-decoration: dodgerblue;
@@ -134,7 +132,7 @@ a {
 	border-radius: 5px;
 	border: none;
 }
-/* ================== above added 07-15-2018 */
+
 #mood-display {
 	margin-left: 5px;
 }
@@ -195,7 +193,7 @@ a {
 	float:left;
     text-align:center;
 }
-/* take out code below? */
+
 .lightgrey{
 	color:#a8a8a8; 
 }
@@ -210,7 +208,7 @@ a {
     background:#e9f8df; 
     border-radius: 8px;
 }
-/* take out code above? */
+
 i {
 	font-size: 25px;
  }
