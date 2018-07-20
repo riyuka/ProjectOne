@@ -158,18 +158,44 @@ $("#food-spend").on("click", function(event) {
 
   
     dataRef.ref().child('spendTotal').equalTo('total').once("value",function(snapshot){  
-        var userData = snapshot.val();
-      console.log(JSON.stringify(userData))
-        
+
              var countRef = dataRef.ref('spendTotal' +'/' + 'total');
-  
+
            countRef.transaction(function(currentCount) {
                return Number(currentCount) + Number(spendInput) })
 
-            //    $('#spendtt').text()
+          
     });
+
+    updateSpend();
+
+    //     dataRef.ref().on("child_added",function(snapshot){  
+
+    //     console.log(snapshot.val())
+    
+    //     //    $('#spendtt').html(snapshot.val())
+    
+         
+    // });
+
+
     
 })
+
+updateSpend();
+
+function updateSpend(){
+
+    dataRef.ref().child('spendTotal').on("child_added",function(snapshot){  
+
+        console.log(snapshot.val())
+    
+           $('#spendtt').html(snapshot.val())
+    
+         
+    });
+}
+
 
 dataRef.ref().child('food-spend').on('child_added', function(snapshot){
 
@@ -222,11 +248,8 @@ dataRef.ref().child('food').orderByKey().on("value",function(snapshot){
 
     $('#apple-d').html("<div>" + snapshot.val().apple.count + "</div>")
     $('#avocado-d').html( "<div>" + snapshot.val().avocado.count + "</div>")
+    $('#avocado-d').html( "<div>" + snapshot.val().avocado.count + "</div>")
 
-    
- 
- 
-   
 
 })
 // foodRef.orderByChild(userFood).equalTo(dateId).on("value",function(snapshot) {   
@@ -258,16 +281,53 @@ $(document).on("click", 'i', function() {
         var moodKey = moodRef.push().key;
       
          var updatesM = {};
-         updatesM[userMood +'/' + dateId]= {
+         updatesM[userMood]= {
+             count: 1,
              mood: userMood,
              date: dateId,
              timestamp: firebase.database.ServerValue.TIMESTAMP
          }
           return moodRef.update(updatesM);
       }
-      writeMood();
+     
+      dataRef.ref().child('mood').orderByChild('mood').equalTo(userMood).once("value",function(snapshot){  
+        var userData = snapshot.val();
+            //console.log(userData)
+        if (!userData) {
+           writeMood();
+        } else {
+             var moodCountRef = dataRef.ref('mood'+ '/' + '/' + userMood + '/' + 'count');
+           moodCountRef.transaction(function(currentCount) {
+               return (currentCount + 1);})
+               
+          }
+    });
 
     })
+
+    dateId = getCurrentDateTime().slice(0, 10);
+     
+dataRef.ref().child('mood').orderByKey().on("value",function(snapshot){  
+    
+
+    //child(dateId).orderByChild('food')
+    // $("#food-display").prepend("<div id='" + dateId + "'>" + dateId + "</div>");
+
+    // console.log(snapshot.val().apple.count)
+
+    $('#smile-count').html("<div>" + snapshot.val().smile.count + "</div>");
+    $('#meh-count').html( "<div>" + snapshot.val().meh.count + "</div>");
+    $('#tired-count').html( "<div>" + snapshot.val().tired.count + "</div>");
+    $('#rolling-eyes-count').html( "<div>" + snapshot.val()['rolling-eyes'].count + "</div>");
+    $('#dizzy-count').html( "<div>" + snapshot.val().dizzy.count + "</div>");
+    $('#grin-tears-count').html( "<div>" + snapshot.val()['grin-tears'].count + "</div>");
+    $('#laugh-count').html( "<div>" + snapshot.val().laugh.count + "</div>");
+    $('#heart-count').html( "<div>" + snapshot.val().heart.count + "</div>");
+    $('#surprise-count').html( "<div>" + snapshot.val().surprise.count + "</div>");
+    $('#angry-count').html( "<div>" + snapshot.val().angry.count + "</div>");
+
+})
+    
 
     // else {
         // dataRef.ref('/myMood').push(newData
