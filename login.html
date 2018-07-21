@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Russo+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+</head>
+<!-- <style>
+
+    body {
+        background: #fff;
+        padding: 0px;
+        margin: 0px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 10px;
+    }
+    input, button {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+    }
+
+    .loggedin-div {
+        float: right;
+    }
+
+    .sign-div {
+        float: left;
+    }
+
+    #wrapper {
+        overflow: hidden;
+    }
+
+    .main-div, .loggedin-div, .sign-div {
+        width: 20%;
+        margin: 0px auto;
+        margin-top: 150px;
+        padding: 20px;
+    }
+
+    .main-div input, .sign-div input {
+        display: block;
+        border: 1px solid #5d8ffc;
+        border-radius:5px;
+        background: #fff;
+        padding: 15px;
+        outline: none;
+        width: 100%;
+        margin-bottom: 10px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+    }
+
+    .main-div input:focus {
+        border: 1px solid #777;
+    }
+
+    .main-div button, .loggedin-div button, .sign-div button {
+        background: #5d8ffc;
+        color: #fff;
+        border:0px;
+        border-radius: 5px;
+        padding: 15px;
+        display: block;
+        width: 100%;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+    }
+
+    .main-div button:hover, .loggedin-div button:hover, .sign-div button:hover{
+        background: #fff;
+        color: #5d8ffc;
+        border: 1px solid #5d8ffc;
+    }
+
+
+</style> -->
+
+<body>
+
+<div id="wrapper">
+<div id="sign_div" class="sign-div">
+        <h1>Sign-Up</h1>
+        <input type="email" placeholder="Email" id="signin_email_field">
+        <input type="password" placeholder="Password" id="signin_password_field">
+        <button id="signin_button">Signup</button>
+</div>
+
+<div id="logged_div" class="main-div">
+    <h1>Login</h1>
+    <input type="email" placeholder="Email" id="email_field">
+    <input type="password" placeholder="Password" id="password_field">
+    <button id="login_button">Login</button>
+</div>
+
+</div>
+
+<div id="user_div" class="loggedin-div">
+    <h3>Welcome User</h3>
+    <p id="user_paragraph">Welcome to Firebase login</p>
+    <a href="index.html" id="profile">Click To Your Profile</a>
+    <button id="logout_button" class="topcorner">Logout</button>
+</div>
+<!-- <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"> -->
+<!-- //   Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyA-DmcnMrGpu9up2xFBq6UfJOvkDVzw0lE",
+//     authDomain: "authpractice-641b2.firebaseapp.com",
+//     databaseURL: "https://authpractice-641b2.firebaseio.com",
+//     projectId: "authpractice-641b2",
+//     storageBucket: "authpractice-641b2.appspot.com",
+//     messagingSenderId: "941773139160"
+//   }; -->
+
+<!-- //   firebase.initializeApp(config);
+
+// var uid;
+
+// firebase.auth().onAuthStateChanged(function(user) {
+
+//   if (user) {
+//     debugger;
+//     // User is signed in.
+//     uid = firebase.auth().currentUser.uid;
+
+//     function writeUserData(uid) {
+//         firebase.database().ref(uid).set({
+//             userid: uid
+//         });
+//     }
+
+//     writeUserData(uid);
+
+    
+//     $("#user_div").css("display", "block");
+//     $("#logged_div").css("display", "none");
+//     $("#sign_div").css("display", "none");
+
+
+//     var user = firebase.auth().currentUser;
+//     if(user != null) {
+//     var email_id = user.email;
+//     $("#user_paragraph").text("Welcome: " + email_id);
+//     }
+
+//     $
+
+//   } else {
+//     // No user is signed in.
+
+//     $("#user_div").css("display", "none");
+//     $("#logged_div").css("display", "block");
+//     $("#sign_div").css("display", "block");
+
+//   }
+// });
+
+// $("#login_button").on("click", function() {
+
+//     var userEmail = $("#email_field").val();
+//     var userPassword = $("#password_field").val();
+
+//     firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
+//         // Handle Errors here.
+//         var errorCode = error.code;
+//         var errorMessage = error.message;
+//         // ...
+//         alert("error");
+//         });
+        
+
+// });
+
+// var uid;
+
+// $("#signin_button").on("click", function() {
+
+//     var userEmail = $("#signin_email_field").val();
+//     var userPassword = $("#signin_password_field").val();
+
+//     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
+//         alert('You already have an account');
+
+//         });
+// });
+
+// $("#logout_button").on("click", function(){
+//     firebase.auth().signOut().then(function() {
+//   // Sign-out successful.
+// }).catch(function(error) {
+//   alert('error');
+// });
+// }); -->
+
+<!-- </script> -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/javascript/app.js"></script>
+</body>
+</html>

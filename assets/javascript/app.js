@@ -574,7 +574,85 @@ dataRef.ref().child('mood').orderByKey().on("value",function(snapshot){
 //   });
 
 
+// login javascript
 
+var uid;
+
+firebase.auth().onAuthStateChanged(function(user) {
+
+  if (user) {
+    debugger;
+    // User is signed in.
+    uid = firebase.auth().currentUser.uid;
+
+    function writeUserData(uid) {
+        firebase.database().ref(uid).set({
+            userid: uid
+        });
+    }
+
+    writeUserData(uid);
+
+    
+    $("#user_div").css("display", "block");
+    $("#logged_div").css("display", "none");
+    $("#sign_div").css("display", "none");
+
+
+    var user = firebase.auth().currentUser;
+    if(user != null) {
+    var email_id = user.email;
+    $("#user_paragraph").text("Welcome: " + email_id);
+    }
+
+    $
+
+  } else {
+    // No user is signed in.
+
+    $("#user_div").css("display", "none");
+    $("#logged_div").css("display", "block");
+    $("#sign_div").css("display", "block");
+
+  }
+});
+
+$("#login_button").on("click", function() {
+
+    var userEmail = $("#email_field").val();
+    var userPassword = $("#password_field").val();
+
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+        alert("error");
+        });
+        
+
+});
+
+var uid;
+
+$("#signin_button").on("click", function() {
+
+    var userEmail = $("#signin_email_field").val();
+    var userPassword = $("#signin_password_field").val();
+
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
+        alert('You already have an account');
+
+        });
+});
+
+$("#logout_button").on("click", function(){
+    firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  alert('error');
+});
+});
 
 
 
