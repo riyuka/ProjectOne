@@ -611,7 +611,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // No user is signed in.
 
     $("#user_div").css("display", "none");
-    $("#logged_div").css("display", "block");
+    $("#logged_div").load("login.html #logged_div").css("display", "block");
     $("#sign_div").css("display", "block");
 
   }
