@@ -3,73 +3,428 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Thought</title>
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Russo+One" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
 <body>
-    <!-- <div class="calendar">
-        <div class="title">
-          <div id="small-title"><span class="green" id="calendar-title">Month</span>
-          <span class="green small" id="calendar-year">Year</span>
-          </div>
-          <div>
-          <a href="" id="prev">Prev Month</a>
-          <a href="" id="next">Next Month</a>
-          </div>
-        </div>
-        <div class="body">
-          <div class="lightgrey body-list">
-            <ul>
-              <li>SUN</li>
-              <li>MON</li>
-              <li>TUE</li>
-              <li>WED</li>
-              <li>THU</li>
-              <li>FRI</li>
-              <li>SAT</li>
+<div id="wrapper" class="container">
+  <div id="sign_div" class="sign-div row">
+          <h1>Sign-Up</h1>
+          <input type="email" placeholder="Email" id="signin_email_field">
+          <input type="password" placeholder="Password" id="signin_password_field">
+          <button id="signin_button" class="btn btn-primary">Signup</button>
+  </div>
+  <div id="logged_div" class="main-div row">
+      <h1>Login</h1>
+      <input type="email" placeholder="Email" id="email_field">
+      <input type="password" placeholder="Password" id="password_field">
+      <button id="login_button" class="btn btn-primary">Login</button>
+  </div>
+</div>
+
+<div class="container app-container">
+  <div class="row">
+    <div id="nav" class="col-6">
+        <!-- <a href="index.html" class="selected">Journal</a>
+        <a href="index-mood.html">Mood</a> 
+        <a href="index-food.html">Food</a> -->
+        <button id="journal-btn" class="nav-button selected">Journal</button>
+            <button id="mood-btn" class="nav-button">Mood</button> 
+            <button id="food-btn" class="nav-button">Food</button>
+    </div>  
+    <div id="user_div" class="loggedin-div col-6">
+        <button id="logout_button" class="topcorner btn btn-secondary">Logout</button>
+        <p id="user_paragraph">Welcome to Firebase login</p>
+    </div>
+  </div>
+
+  <div id="journal-page">
+  <h1 for="comment-input">What's your thought now?</h1>
+  <div class="row">
+    <form class="col-8">
+      <textarea class="form-control" id="thought-input" rows="5"></textarea>
+      <button class="btn btn-primary" id="add" type="submit">Submit</button>
+    </form>
+    <div id="thought-display" class="col-4"></div>
+  </div>
+  </div>
+
+  <div id="mood-page">
+      <h1 id="mood">What's your mood now?</h1>
+      <div class="row">
+          <div id="my-mood" class="col-6">
               
-            </ul>
-          </div>
-          <div class="darkgrey body-list">
-            <ul id="days">
-            </ul>
-          </div>
+              <div class="i-wrap">
+              <i class="far fa-smile" data-mood="smile"></i>
+              <div id="smile-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="smile"> -->
+              </div>
+
+              <div class="i-wrap">
+              <i class="far fa-grin-tongue" data-mood="grin-tongue"></i>
+              <div id="grin-tongue-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="smile"> -->
+              </div>
+
+              <div class="i-wrap">
+              <i class="far fa-frown" data-mood="frown"></i>
+              <div id="frown-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="smile"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-meh-blank" data-mood="meh"></i>
+              <div id="meh-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="meh"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-tired" data-mood="tired"></i>
+              <div id="tired-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="tired"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-meh-rolling-eyes" data-mood="rolling-eyes"></i>
+              <div id="rolling-eyes-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="rolling-eyes"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-dizzy" data-mood="dizzy"></i>
+              <div id="dizzy-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="dizzy"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-laugh-beam" data-mood="laugh"></i>
+              <div id="laugh-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="laugh"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-grin-tears" data-mood="grin-tears"></i>
+              <div id="grin-tears-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="grin-tears"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-kiss-wink-heart" data-mood="heart"></i>
+              <div id="heart-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="heart"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-surprise" data-mood="surprise"></i>
+              <div id="surprise-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="surprise"> -->
+              </div>
+  
+              <div class="i-wrap">
+              <i class="far fa-angry" data-mood="angry"></i>
+              <div id="angry-count"></div>
+              <!-- <input type="radio" class="chk" data-mood="angry"> -->
+              </div>
+      </div>
+      <div id="mood-display" class="col-6">
+          <h2 id="pick-title">Take a break, read a recent news</h2>
+            <select id="selectnews" name="">   
+                <option value="">Select a category</option>   
+                <option value="Arts">Arts</option>   
+                <option value="Books">Books</option> 
+                <option value="Food">Food</option> 
+                <option value="Health">Health</option> 
+                <option value="Movies">Movies</option> 
+                <option value="Sports">Sports</option> 
+                <option value="Style">Style</option> 
+                <option value="Technology">Technology</option> 
+                <option value="Travel">Travel</option> 
+                <option value="Science">Science</option> 
+                <option value="Opinion">Opinion</option> 
+                <option value="Business Day">Business Day</option>   
+            </select>
+            <button id="selected" class="btn btn-primary">Get news</button>
+            <div id="news-wrap"></div>
         </div>
-      </div> -->
-
-      <div id="nav">
-          <a href="index.html">Journal</a>
-          <a href="index-mood.html">Mood</a> 
-          <a href="index-food.html">Food</a>
-      </div>  
-<!-- 
-      <button id="food-btn">Food</button>
-
-      <button id="journal-btn">Journal</button>
-
-      <button id="mood-btn">Mood</button> -->
-
-      <form>
-      <label for="comment-input">What's your thought today?</label>
-        <textarea class="form-control" id="thought-input" rows="5"></textarea>
-        <button class="btn btn-default" id="add" type="submit">Submit</button>
-        </form>
-
-        <!-- <div id="my-mood">
-            <div id="mood">What's your mood today?</div>
-                <i class="far fa-smile" data-mood="smile"></i><input type="radio" class="chk" data-mood="smile">
-                <i class="far fa-meh-blank" data-mood="meh"></i></i></i><input type="radio" class="chk" data-mood="meh">
-                <i class="far fa-tired" data-mood="tired"></i></i></i><input type="radio" class="chk" data-mood="tired">
-
-        </div> --> 
-
-        <div id="thought-display"></div>
+      </div>
+      </div>
 
 
+      <div id="food-page">
+          <h1>What do you eat today?</h1>
+          <div class="row">
+              <div class="card-deck col-6">
+                <div class="card">
+                  <img class="card-img-top" src="./assets/images/food icons/Avocado.png" id="avocado" alt="Card image cap">
+                  <div class="card-body" id="avocado-d">
+                    <!-- <h5 class="card-title">avocado</h5> -->
+                    <!-- <input class="checkbox" type="radio" data-food="avocado"> -->
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="./assets/images/food icons/Apple.png" id="apple" alt="Card image cap">
+                  <div class="card-body" id="apple-d">
+                    <!-- <h5 class="card-title">apple</h5> -->
+                    <!-- <input class="checkbox" type="radio" data-food="chicken"> -->
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="./assets/images/food icons/Banana.png" id="banana" alt="Card image cap">
+                  <div class="card-body" id="banana-d">
+                    <!-- <h5 class="card-title">banana</h5> -->
+                    <!-- <input class="checkbox" type="radio" data-food="beef"> -->
+                  </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./assets/images/food icons/Broccoli.png" id="broccoli" alt="Card image cap">
+                    <div class="card-body" id="broccoli-d">
+                      <!-- <h5 class="card-title">broccoli</h5> -->
+                      <!-- <input class="checkbox" type="radio" data-food="apple"> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./assets/images/food icons/Carrot.png" id="carrot" alt="Card image cap">
+                    <div class="card-body" id="carrot-d">
+                      <!-- <h5 class="card-title">carrot</h5> -->
+                      <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                    </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="./assets/images/food icons/Corn.png" id="corn" alt="Card image cap">
+                  <div class="card-body" id="corn-d">
+                    <!-- <h5 class="card-title">corn</h5> -->
+                    <!-- <input class="checkbox" type="radio" data-food="potato"> -->
+                  </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./assets/images/food icons/Eggs.png" id="eggs" alt="Card image cap">
+                    <div class="card-body" id="eggs-d">
+                      <!-- <h5 class="card-title">eggs</h5> -->
+                      <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./assets/images/food icons/Cucumber.png" id="cucumber" alt="Card image cap">
+                    <div class="card-body" id="cucumber-d">
+                      <!-- <h5 class="card-title">cucumber</h5> -->
+                      <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                    </div>
+                  </div>
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/Hot Dog.png" id="hotdog" alt="Card image cap">
+                      <div class="card-body" id="hotdog-d">
+                        <!-- <h5 class="card-title">hotdog</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                  </div>
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/Hamburger.png" id="burger" alt="Card image cap">
+                      <div class="card-body" id="burger-d">
+                        <!-- <h5 class="card-title">burger</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                  </div>
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/Durian.png" id="durian" alt="Card image cap">
+                      <div class="card-body" id="durian-d">
+                        <!-- <h5 class="card-title">fish</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                  </div> 
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/French Fries.png" id="fries" alt="Card image cap">
+                      <div class="card-body" id="fries-d">
+                        <!-- <h5 class="card-title">fish</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                  </div>      
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/Asparagus.png" id="asparagus" alt="Card image cap">
+                      <div class="card-body" id="asparagus-d">
+                        <!-- <h5 class="card-title">fish</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                  </div>      
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/Bavarian Pretzel.png" id="pretzel" alt="Card image cap">
+                      <div class="card-body" id="pretzel-d">
+                        <!-- <h5 class="card-title">fish</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                  </div>      
+                          <div class="card">
+                              <img class="card-img-top" src="./assets/images/food icons/Cookies.png" id="cookies" alt="Card image cap">
+                              <div class="card-body" id="cookies-d">
+                                <!-- <h5 class="card-title">fish</h5> -->
+                                <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                              </div>
+                            </div>      
+                          <div class="card">
+                              <img class="card-img-top" src="./assets/images/food icons/Bacon.png" id="bacon" alt="Card image cap">
+                              <div class="card-body" id="bacon-d">
+                                <!-- <h5 class="card-title">fish</h5> -->
+                                <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                              </div>
+                         </div>      
+                        <div class="card">
+                            <img class="card-img-top" src="./assets/images/food icons/Birthday Cake.png" id="birthday-cake" alt="Card image cap">
+                            <div class="card-body" id="birthday-cake-d">
+                              <!-- <h5 class="card-title">fish</h5> -->
+                              <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                            </div>
+                          </div>   
+                          <div class="card">
+                              <img class="card-img-top" src="./assets/images/food icons/Cherry.png" id="cherry" alt="Card image cap">
+                              <div class="card-body" id="cherry-d">
+                                <!-- <h5 class="card-title">fish</h5> -->
+                                <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                              </div>
+                            </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Cheese.png" id="cheese" alt="Card image cap">
+                                <div class="card-body" id="cheese-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Chili Pepper.png" id="chili-pepper" alt="Card image cap">
+                                <div class="card-body" id="chili-pepper-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Coffee to Go.png" id="coffee-to-go" alt="Card image cap">
+                                <div class="card-body" id="coffee-to-go-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Crab.png" id="crab" alt="Card image cap">
+                                <div class="card-body" id="crab-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Cotton Candy.png" id="cotton-candy" alt="Card image cap">
+                                <div class="card-body" id="cotton-candy-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Dim Sum.png" id="dim-sum" alt="Card image cap">
+                                <div class="card-body" id="dim-sum-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Doughnut.png" id="doughnut" alt="Card image cap">
+                                <div class="card-body" id="doughnut-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Pineapple.png" id="pineapple" alt="Card image cap">
+                                <div class="card-body" id="pineapple-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                            <div class="card">
+                                <img class="card-img-top" src="./assets/images/food icons/Grapes.png" id="grapes" alt="Card image cap">
+                                <div class="card-body" id="grapes-d">
+                                  <!-- <h5 class="card-title">fish</h5> -->
+                                  <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                                </div>
+                              </div> 
+                          <div class="card">
+                              <img class="card-img-top" src="./assets/images/food icons/Honey.png" id="honey" alt="Card image cap">
+                              <div class="card-body" id="honey-d">
+                                <!-- <h5 class="card-title">fish</h5> -->
+                                <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                              </div>
+                            </div> 
+                        <div class="card">
+                            <img class="card-img-top" src="./assets/images/food icons/Food And Wine.png" id="food-wine" alt="Card image cap">
+                            <div class="card-body" id="food-wine-d">
+                              <!-- <h5 class="card-title">fish</h5> -->
+                              <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                            </div>
+                          </div> 
+                        <div class="card">
+                            <img class="card-img-top" src="./assets/images/food icons/Ice Cream Cone.png" id="ice-cream-cone" alt="Card image cap">
+                            <div class="card-body" id="ice-cream-cone-d">
+                              <!-- <h5 class="card-title">fish</h5> -->
+                              <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                            </div>
+                          </div> 
+                      <div class="card">
+                          <img class="card-img-top" src="./assets/images/food icons/Hot Chocolate.png" id="hot-chocolate" alt="Card image cap">
+                          <div class="card-body" id="hot-chocolate-d">
+                            <!-- <h5 class="card-title">fish</h5> -->
+                            <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                          </div>
+                        </div> 
+                  <div class="card">
+                      <img class="card-img-top" src="./assets/images/food icons/Pomegranate.png" id="pomegranate" alt="Card image cap">
+                      <div class="card-body" id="pomegranate-d">
+                        <!-- <h5 class="card-title">fish</h5> -->
+                        <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                      </div>
+                    </div> 
+                    <div class="card">
+                        <img class="card-img-top" src="./assets/images/food icons/Hazelnut.png" id="hazelnut" alt="Card image cap">
+                        <div class="card-body" id="hazelnut-d">
+                          <!-- <h5 class="card-title">fish</h5> -->
+                          <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                        </div>
+                      </div> 
+                      <div class="card">
+                          <img class="card-img-top" src="./assets/images/food icons/Sushi.png" id="sushi" alt="Card image cap">
+                          <div class="card-body" id="sushi-d">
+                            <!-- <h5 class="card-title">fish</h5> -->
+                            <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                          </div>
+                        </div> 
+                        <div class="card">
+                            <img class="card-img-top" src="./assets/images/food icons/Taco.png" id="taco" alt="Card image cap">
+                            <div class="card-body" id="taco-d">
+                              <!-- <h5 class="card-title">fish</h5> -->
+                              <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                            </div>
+                          </div> 
+                          <div class="card">
+                              <img class="card-img-top" src="./assets/images/food icons/Watermelon.png" id="watermelon" alt="Card image cap">
+                              <div class="card-body" id="watermelon-d">
+                                <!-- <h5 class="card-title">fish</h5> -->
+                                <!-- <input class="checkbox" type="radio" data-food="carrot"> -->
+                              </div>
+                            </div> 
+              </div>
+            
+              <div id="food-section" class="col-6">
+                <div id="food-display"></div>
+                <div id="spendt">Total spend on food: $ <span id="spendtt"></span></div>
+                <div id="balance">Remember to balance your food selection!</div>
+                <input id="spend-input" placeholder="Latest food expense"> <button id="food-spend" class="btn btn-primary">submit</button>
+              </div>
+          </div>
+          </div>  
 
+
+
+
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="assets/javascript/app.js"></script>
