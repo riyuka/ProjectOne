@@ -56,10 +56,6 @@ $("#news-wrap").text("");
   var dateId;
   var dateDisplay;
   
-
-
-
-
   firebase.auth().onAuthStateChanged(function(user) {
 
     if (user) {
